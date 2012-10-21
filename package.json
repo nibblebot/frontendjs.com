@@ -1,0 +1,15 @@
+{
+  "name": "frontendjs.com",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.x",
+    "consolidate": "https://github.com/visionmedia/consolidate.js/tarball/master",
+    "dustjs-linkedin": "*",
+    "grunt": "0.3.x",
+    "grunt-contrib-coffee": "0.3.x"
+  }
+}
