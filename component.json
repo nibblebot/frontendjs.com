@@ -1,0 +1,7 @@
+{
+  "name": "FrontendJS",
+  "dependencies": {
+    "jquery": "git://github.com/components/jquery.git#1.8.1",
+    "bootstrap": "git://github.com/twitter/bootstrap.git#v2.1.1"
+  }
+}
