@@ -7,6 +7,9 @@ module.exports = function(grunt) {
       compile: {
         files: {
           'app/*.js': 'src/app/**/*.coffee'
+        },
+        options: {
+          bare: true
         }
       }
     },

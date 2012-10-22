@@ -1,5 +1,7 @@
 express = require 'express' 
-routes = require './routes/routes' 
+index = require './routes'
+repos = require './routes/repos'
+console.log repos
 http = require 'http' 
 app = express()
 
@@ -19,7 +21,8 @@ app.configure ->
 app.configure 'development', ->
   app.use express.errorHandler()
 
-app.get '/', routes.index
+app.get '/', index
+app.get '/repos', repos.add
 
 http.createServer(app).listen app.get('port'), ->
   console.log "Express server listening on port " + app.get('port')

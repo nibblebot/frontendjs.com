@@ -1,35 +1,38 @@
-(function() {
-  var app, express, http, routes;
+var app, express, http, index, repos;
 
-  express = require('express');
+express = require('express');
 
-  routes = require('./routes/routes');
+index = require('./routes');
 
-  http = require('http');
+repos = require('./routes/repos');
 
-  app = express();
+console.log(repos);
 
-  app.configure(function() {
-    app.engine('.dust', require('consolidate').dust);
-    app.set('port', process.env.PORT || 3000);
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'dust');
-    app.use(express.favicon());
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(app.router);
-    return app.use(express["static"](__dirname + '/public'));
-  });
+http = require('http');
 
-  app.configure('development', function() {
-    return app.use(express.errorHandler());
-  });
+app = express();
 
-  app.get('/', routes.index);
+app.configure(function() {
+  app.engine('.dust', require('consolidate').dust);
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'dust');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  return app.use(express["static"](__dirname + '/public'));
+});
 
-  http.createServer(app).listen(app.get('port'), function() {
-    return console.log("Express server listening on port " + app.get('port'));
-  });
+app.configure('development', function() {
+  return app.use(express.errorHandler());
+});
 
-}).call(this);
+app.get('/', index);
+
+app.get('/repos', repos.add);
+
+http.createServer(app).listen(app.get('port'), function() {
+  return console.log("Express server listening on port " + app.get('port'));
+});
