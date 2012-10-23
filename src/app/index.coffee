@@ -22,7 +22,7 @@ app.configure 'development', ->
   app.use express.errorHandler()
 
 app.get '/', index
-app.get '/repos', repos.add
+app.post '/repos', repos.add
 
 http.createServer(app).listen app.get('port'), ->
   console.log "Express server listening on port " + app.get('port')
