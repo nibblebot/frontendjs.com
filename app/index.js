@@ -1,4 +1,4 @@
-var app, express, http, index, repos;
+var app, db, express, http, index, mongoose, repos;
 
 express = require('express');
 
@@ -7,6 +7,10 @@ index = require('./routes');
 repos = require('./routes/repos');
 
 http = require('http');
+
+mongoose = require('mongoose');
+
+db = mongoose.createConnection('localhost', 'frontendjs');
 
 app = express();
 
@@ -30,6 +34,9 @@ app.get('/', index.index);
 
 app.post('/repos', repos.add);
 
-http.createServer(app).listen(app.get('port'), function() {
-  return console.log("Express server listening on port " + app.get('port'));
+db.once('open', function() {
+  console.log('MongoDB connected');
+  return http.createServer(app).listen(app.get('port'), function() {
+    return console.log("Express server listening on port " + app.get('port'));
+  });
 });

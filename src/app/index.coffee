@@ -2,6 +2,9 @@ express = require 'express'
 index = require './routes'
 repos = require './routes/repos'
 http = require 'http' 
+mongoose = require 'mongoose'
+db = mongoose.createConnection 'localhost', 'frontendjs'
+  
 app = express()
 
 app.configure ->
@@ -22,5 +25,7 @@ app.configure 'development', ->
 app.get '/', index.index
 app.post '/repos', repos.add
 
-http.createServer(app).listen app.get('port'), ->
-  console.log "Express server listening on port " + app.get('port')
+db.once 'open', ->
+  console.log 'MongoDB connected'
+  http.createServer(app).listen app.get('port'), ->
+    console.log "Express server listening on port " + app.get('port')

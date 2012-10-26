@@ -10,6 +10,7 @@
     "consolidate": "https://github.com/visionmedia/consolidate.js/tarball/master",
     "dustjs-linkedin": "*",
     "grunt": "0.3.x",
-    "grunt-contrib-coffee": "0.3.x"
+    "grunt-contrib-coffee": "0.3.x",
+    "mongoose": "3.3.x"
   }
 }
