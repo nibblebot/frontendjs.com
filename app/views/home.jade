@@ -1,5 +1,5 @@
 extends layout
 block content
   form(method='POST', action='/repos')
-    input(type='text', placeholder='e.g. visionmedia/jade')
+    input(type='text', name='repo', placeholder='e.g. visionmedia/jade')
     button.btn(type='submit') Add repo

@@ -1,6 +1,0 @@
-{>layout /}
-{<body}
-{#data}
-Watchers: {watchers}
-{/data}
-{/body}

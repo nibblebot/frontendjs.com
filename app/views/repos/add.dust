@@ -1,9 +1,0 @@
-{>layout /}
-{<body}
-
-<form action="/repos" method="POST">
-
-
-
-</form>
-{/body}

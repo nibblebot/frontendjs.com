@@ -1,11 +1,13 @@
 express = require 'express' 
-index = require './routes'
-repos = require './routes/repos'
 http = require 'http' 
 mongoose = require 'mongoose'
 db = mongoose.createConnection 'localhost', 'frontendjs'
-  
 app = express()
+app.set 'root', __dirname
+app.set 'db', db
+app.set 'Repo', require(__dirname + '/models/repo') app
+index = require(__dirname + '/routes') app
+repos = require(__dirname + '/routes/repos') app
 
 app.configure ->
   app.set 'port', process.env.PORT || 3000
